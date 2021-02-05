@@ -1,12 +1,45 @@
 <html>
 
 <head>
-    <title>Mezcladitos / Ann Jolie Lourido Pose</title>
+    <title>Mezcladitos</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="description" content="Juego de boggle/mezcladitos">
+    <meta name="author" content="Ann Jolie Lourido Pose">
+    <script src="js/jquery.js"></script>
+    <script` src="js/script.js"></script>
+    <link rel="stylesheet" href="estilos/estilos.css" />
 </head>
 
 <body>
-    <h1>Aquí va el juego</h1>
-    <p>Aquí va una descripción</p>
+    <header>
+        <h1 id="titulo">Mezcladitos</h1>
+    </header>
+    <main>
+        <div class="contenedorPrincipal">
+            <aside>
+                <div id="score"></div>
+                <div id="listaPalabras"></div>
+            </aside>
+            <section>
+                <div id="tablero"></div>
+            </section>
+            <nav>
+                <div>
+                    <p>Tiempo</p>
+                    <span id="tiempo">-:--</span>
+                </div>
+                <button id="buttonInicio">Empezar mezcladito</button>
+                <button id="buttonPausa">Pausar juego</button>
+            </nav>
+        </div>
+        
+    </main>
+    <div id="vistaPausa" class="ocultar">
+        <h2>Juego pausado</h2>
+        <span>Tiempo restante <label id="tiempoRestante">-:--</label></span>
+        <button id="buttonContinuar">Continuar</button>
+    </div>
 </body>
 
 </html>
