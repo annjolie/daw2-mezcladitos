@@ -1,7 +1,178 @@
 #titulo {
-    font-family: 'Gorditas', cursive;
+    /*font-family: 'Gorditas', cursive;*/
+    font-family: 'Monoton', cursive;
+    text-align: center;
+    color: #2BFFDF;
+    font-weight: 200;
+    font-size: 4em;
 }
 
 body {
     font-family: 'Architects Daughter', cursive;
+    background: linear-gradient(to bottom, #5F03E0 40%, black);
+    margin: 0;
+    padding: auto;
+}
+
+.tiempo p {
+    margin: 0%;
+}
+
+.contenedorPrincipal {
+    color: #EBE501;
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+}
+
+aside {
+    text-align: center;
+    font-size: 1.5em;
+}
+
+li {
+    list-style: none;
+    font-size: 2rem;
+}
+
+nav {
+    font-size: 1.5em;
+}
+
+#score {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.tiempo {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+#tablero {
+    display: flex;
+    border: solid 4px #EBE501;
+    height: 40em;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    row-gap: 15px;
+    width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+}
+
+.flex_item {
+    align-self: center;
+    color: #5F03E0;
+    font-size: 4em;
+    box-sizing: border-box;
+    border: solid 1px white;
+    border-radius: 80%;
+    text-align: center;
+    line-height: 1.8em;
+    width: 17%;
+    background-color: white;
+    filter: drop-shadow(15px 10px 9px rgb(0, 0, 0));
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.seleccionado {
+    color: #EBE501;
+    font-size: 4em;
+    box-sizing: border-box;
+    border: solid 1px white;
+    border-radius: 80%;
+    text-align: center;
+    width: 17%;
+    background-color: #000000;
+    filter: none;
+}
+
+.valido {
+    color: #2BFFDF;
+    font-weight: bold;
+}
+
+.repetido {
+    color: white;
+    font-weight: bold;
+}
+
+.invalido {
+    color: red;
+    font-weight: bold;
+}
+
+#vistaPausa {
+    position: absolute;
+    color: #EBE501;
+    font-size: 100px;
+    top: 0;
+    left: auto;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    z-index: 100;
+}
+
+.fondoPausa {
+    position: absolute;
+    top: 0;
+    left: auto;
+    width: 100vw;
+    height: 100vh;
+    background-color: black;
+    opacity: 0.8;
+}
+
+button {
+    background-color: black;
+    border-color: black;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 30px;
+    margin: 5px;
+    padding: 0px 10px;
+    border-radius: 50px;
+    color: #EBE501;
+    cursor: pointer;
+}
+
+#buttonContinuar {
+    background-color: white;
+    border-color: white;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 30px;
+    margin: 5px;
+    padding: 0px 10px;
+    border-radius: 50px;
+    color: #5F03E0;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: white;
+    border-color: white;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 30px;
+    margin: 5px;
+    padding: 0px 10px;
+    border-radius: 50px;
+    color:  #5F03E0;
+    cursor: pointer;
+}
+
+#buttonContinuar:hover {
+    background-color: #EBE501;
+    border-color: #EBE501;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 30px;
+    margin: 5px;
+    padding: 0px 10px;
+    border-radius: 50px;
+    color: black;
+    font-weight: bold;
 }
