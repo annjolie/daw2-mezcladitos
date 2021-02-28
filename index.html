@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Gorditas&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Modak&family=Monoton&display=swap" rel="stylesheet">
     <script src="js/jquery.js"></script>
     <script src="js/script.js"></script>
     <link rel="stylesheet" href="estilos/estilos.css" />
@@ -25,10 +26,40 @@
                 <ul id="listaPalabras"></ul>
             </aside>
             <section>
-                <div id="tablero"></div>
+                <div id="tablero">
+                    <div data-value='1_1' class="flex_item 1_1">.</div>
+                    <div data-value='1_2' class="flex_item 1_2">.</div>
+                    <div data-value='1_3' class="flex_item 1_3">.</div>
+                    <div data-value='1_4' class="flex_item 1_4">.</div>
+                    <div data-value='1_5' class="flex_item 1_5">.</div>
+
+                    <div data-value='2_1' class="flex_item 2_1">.</div>
+                    <div data-value='2_2' class="flex_item 2_2">.</div>
+                    <div data-value='2_3' class="flex_item 2_3">.</div>
+                    <div data-value='2_4' class="flex_item 2_4">.</div>
+                    <div data-value='2_5' class="flex_item 2_5">.</div>
+
+                    <div data-value='3_1' class="flex_item 3_1">.</div>
+                    <div data-value='3_2' class="flex_item 3_2">.</div>
+                    <div data-value='3_3' class="flex_item 3_3">.</div>
+                    <div data-value='3_4' class="flex_item 3_4">.</div>
+                    <div data-value='3_5' class="flex_item 3_5">.</div>
+
+                    <div data-value='4_1' class="flex_item 4_1">.</div>
+                    <div data-value='4_2' class="flex_item 4_2">.</div>
+                    <div data-value='4_3' class="flex_item 4_3">.</div>
+                    <div data-value='4_4' class="flex_item 4_4">.</div>
+                    <div data-value='4_5' class="flex_item 4_5">.</div>
+
+                    <div data-value='5_1' class="flex_item 5_1">.</div>
+                    <div data-value='5_2' class="flex_item 5_2">.</div>
+                    <div data-value='5_3' class="flex_item 5_3">.</div>
+                    <div data-value='5_4' class="flex_item 5_4">.</div>
+                    <div data-value='5_5' class="flex_item 5_5">.</div>
+                </div>
             </section>
             <nav>
-                <div>
+                <div class="tiempo">
                     <p>Tiempo</p>
                     <span id="tiempo">-:--</span>
                 </div>
@@ -43,6 +74,7 @@
         <span>Tiempo restante <label id="tiempoRestante">-:--</label></span>
         <button id="buttonContinuar">Continuar</button>
     </div>
+    <div class="fondoPausa"></div>
 </body>
 
 </html>
