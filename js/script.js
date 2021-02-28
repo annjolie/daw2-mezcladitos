@@ -5,6 +5,8 @@ $(document).ready(function() {
     var palabra_seleccionada;
     var letra_Seleccionada;
     var palabras_juego = [];
+    var intervalo;
+
     $("#vistaPausa").hide();
     $(".fondoPausa").hide();
     $("#buttonPausa").hide();
@@ -125,7 +127,7 @@ $(document).ready(function() {
             activo = true;
             tiempo_restante = 180;
             tiempoRestante();
-            setInterval(tiempoRestante, 1000);
+            intervalo = setInterval(tiempoRestante, 1000);
             $("#buttonPausa").show();
             letras_aleatorias();
             palabras_juego = [];
@@ -146,6 +148,7 @@ $(document).ready(function() {
             if (tiempo_restante == 0) {
                 activo = false;
                 $("#buttonInicio").show();
+                clearInterval(intervalo);
             }
             tiempo_restante -= 1;
         }
