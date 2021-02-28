@@ -172,7 +172,7 @@ $(document).ready(function() {
             ['E', 'K', 'I', 'G', 'I']
         ];
         for (var i = 1; i <= 5; i++) {
-            var indice = Math.floor(Math.random() * (letras.length - 1));
+            var indice = Math.floor(Math.random() * (letras.length));
             var letras_a_usar = letras[indice];
             for (var j = 1; j <= 5; j++) {
                 var indice_letras = Math.floor(Math.random() * (letras_a_usar.length - 1));
