@@ -129,6 +129,7 @@ $(document).ready(function() {
             $("#buttonPausa").show();
             letras_aleatorias();
             palabras_juego = [];
+            $("#buttonInicio").hide();
         });
     }
 
@@ -144,6 +145,7 @@ $(document).ready(function() {
             $("#tiempo,#tiempoRestante").html("0" + minutos + ":" + segundos);
             if (tiempo_restante == 0) {
                 activo = false;
+                $("#buttonInicio").show();
             }
             tiempo_restante -= 1;
         }
