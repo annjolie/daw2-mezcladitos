@@ -6,6 +6,7 @@ $(document).ready(function() {
     var letra_Seleccionada;
     var palabras_juego = [];
     var intervalo;
+    var score;
 
     $("#vistaPausa").hide();
     $(".fondoPausa").hide();
@@ -54,23 +55,35 @@ $(document).ready(function() {
         if (activo && palabra_seleccionada.length > 2) {
             //  1.1 Comparar la palabra contra la lista de palabras:
             if ($("#listaPalabras li:contains('" + palabra_seleccionada + "')").length == 0) {
-                palabras_juego.push({
-                    palabra: palabra_seleccionada,
-                    tipo: "valido"
-                        //TODO se debe indicar valido o invalido contra lo que devuelva la lista de palabras del servidor
-                });
+                
+                $.ajax({
+                    type: "POST",
+                    data: JSON.stringify({palabra: palabra_seleccionada}),
+                    contentType: "application/json",
+                })
+                    .done(function (data) {
+                        var tipo_palabra;
+                        if (data.puntaje > 0) {
+                            tipo_palabra = "valido";
+                            score += data.puntaje;
+                            actualizarScore();
+                        }
+                        else {
+                            tipo_palabra = "invalido";
+                        }
+                        palabras_juego.push({
+                            palabra: palabra_seleccionada,
+                            tipo: tipo_palabra
+                        });
+                        listaPalabras();
+                    });
             } else {
                 palabras_juego.push({
                     palabra: palabra_seleccionada,
                     tipo: "repetido"
                 });
+                listaPalabras();
             }
-            listaPalabras();
-            //TODO 1.1.1 Si la palabra no existe y es válida, almacenar como palabra válida
-            //TODO 1.1.2 Si la palabra existe, almacenar como palabra ya existente
-            //TODO 1.1.3 Si la palara no existe y no es válida, almacenar como palabra inválida
-            //TODO 1.2 Mostrar la palabra, y si es valido, invalido o reutilizado en la vista
-            //TODO 1.3 Actualizar el score basado en la puntuación de la palabra conseguida */
         }
         mouse_presionado = false;
         palabra_seleccionada = "";
@@ -107,7 +120,7 @@ $(document).ready(function() {
         return posibilidades;
     }
 
-    function actualizarScore(score) {
+    function actualizarScore() {
         $("#score").html("score: " + score);
     }
 
@@ -122,7 +135,8 @@ $(document).ready(function() {
         //TODO ocultar boton o cambiar texto
         //TODO detener el temporizador
         $("#buttonInicio").click(function() {
-            actualizarScore(0);
+            score = 0;
+            actualizarScore();
             listaPalabras([]);
             activo = true;
             tiempo_restante = 180;
@@ -156,7 +170,6 @@ $(document).ready(function() {
     }
 
     function letras_aleatorias() {
-        //TODO solventar error de letras no rellenas
         let letras = [
             ['A', 'B', 'E', 'C', 'D'],
             ['A', 'F', 'I', 'G', 'H'],
@@ -180,7 +193,7 @@ $(document).ready(function() {
             var indice = Math.floor(Math.random() * (letras.length));
             var letras_a_usar = letras[indice];
             for (var j = 1; j <= 5; j++) {
-                var indice_letras = Math.floor(Math.random() * (letras_a_usar.length - 1));
+                var indice_letras = Math.floor(Math.random() * (letras_a_usar.length));
                 $("." + i + "_" + j).html(letras_a_usar[indice_letras]);
                 letras_a_usar.splice(indice_letras, 1);
             }
