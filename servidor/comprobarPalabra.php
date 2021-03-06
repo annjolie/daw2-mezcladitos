@@ -1,21 +1,29 @@
 <?php
 	require("conexion.php");
 
-    $palabra = $_POST["palabra"];
-    $primera_letra = $palabra[0];
-
-    $consulta = "SELECT puntaje FROM palabras_$primera_letra 
-        WHERE palabra=$palabra LIMIT 1";
-
-    $puntaje = -1;
-	if ($datos = $conexion->query($consulta))
+	try
 	{
-		$resultado = $datos->fetch_object(); 
-		$puntaje = $palabra->puntaje;
-        $datos->close();
+		$palabra = strtolower($_POST["palabra"]);
+		$primera_letra = substr($palabra, 0, 1);
+
+		$consulta = "SELECT puntaje FROM palabras_$primera_letra WHERE palabra='$palabra' LIMIT 1;";
+		$puntaje = -1;
+
+		if ($datos = $conexion->query($consulta))
+		{
+			$resultado = $datos->fetch_object();
+			if ($resultado) {
+				$puntaje = intval($resultado->puntaje);
+			}
+			$datos->close();
+		}
+		
+		$conexion->close();
 	}
-	
-	$conexion->close();
-    $salida = array("puntaje" => $puntaje);
+	catch (Exception $e)
+	{
+		error_log("Error $e", 3, "error.log");
+	}
+	$salida = array("puntaje" => $puntaje);
 	echo json_encode($salida);
 ?>

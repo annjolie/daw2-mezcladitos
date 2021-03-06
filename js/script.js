@@ -63,23 +63,24 @@ $(document).ready(function() {
         if (activo && palabra_seleccionada.length > 2) {
             //  1.1 Comparar la palabra contra la lista de palabras:
             if ($("#listaPalabras li:contains('" + palabra_seleccionada + "')").length == 0) {
-
+                var palabra_aux = palabra_seleccionada;
                 $.ajax({
                         type: "POST",
-                        data: JSON.stringify({ palabra: palabra_seleccionada }),
-                        contentType: "application/json",
+                        url: "servidor/comprobarPalabra.php",
+                        data: { palabra: palabra_aux },
+                        dataType: "json"
                     })
                     .done(function(data) {
                         var tipo_palabra;
                         if (data.puntaje > 0) {
                             tipo_palabra = "valido";
-                            score += data.puntaje;
+                            score += parseInt(data.puntaje);
                             actualizarScore();
                         } else {
                             tipo_palabra = "invalido";
                         }
                         palabras_juego.push({
-                            palabra: palabra_seleccionada,
+                            palabra: palabra_aux,
                             tipo: tipo_palabra
                         });
                         listaPalabras();
