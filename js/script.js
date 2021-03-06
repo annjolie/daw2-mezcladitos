@@ -9,6 +9,7 @@ $(document).ready(function() {
     var score;
 
     $("#vistaPausa").hide();
+    $("#vistaReglas").hide();
     $(".fondoPausa").hide();
     $("#buttonPausa").hide();
 
@@ -17,6 +18,13 @@ $(document).ready(function() {
     $("#buttonPausa").click(function() {
         activo = false;
         $("#vistaPausa").show();
+        $(".fondoPausa").show();
+
+    });
+
+    $("#buttonReglas").click(function() {
+        activo = false;
+        $("#vistaReglas").show();
         $(".fondoPausa").show();
 
     });
@@ -55,20 +63,19 @@ $(document).ready(function() {
         if (activo && palabra_seleccionada.length > 2) {
             //  1.1 Comparar la palabra contra la lista de palabras:
             if ($("#listaPalabras li:contains('" + palabra_seleccionada + "')").length == 0) {
-                
+
                 $.ajax({
-                    type: "POST",
-                    data: JSON.stringify({palabra: palabra_seleccionada}),
-                    contentType: "application/json",
-                })
-                    .done(function (data) {
+                        type: "POST",
+                        data: JSON.stringify({ palabra: palabra_seleccionada }),
+                        contentType: "application/json",
+                    })
+                    .done(function(data) {
                         var tipo_palabra;
                         if (data.puntaje > 0) {
                             tipo_palabra = "valido";
                             score += data.puntaje;
                             actualizarScore();
-                        }
-                        else {
+                        } else {
                             tipo_palabra = "invalido";
                         }
                         palabras_juego.push({
