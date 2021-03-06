@@ -27,6 +27,12 @@ $(document).ready(function() {
         $(".fondoPausa").hide();
     });
 
+    $("#buttonSalirRegla").click(function() {
+        activo = true;
+        $("#vistaReglas").hide();
+        $(".fondoPausa").hide();
+    });
+
     $(".flex_item").each(function() {
         $(this).mousedown(function() {
             mouse_presionado = true;
@@ -163,6 +169,7 @@ $(document).ready(function() {
             if (tiempo_restante == 0) {
                 activo = false;
                 $("#buttonInicio").show();
+                $("#buttonPausa").hide();
                 clearInterval(intervalo);
             }
             tiempo_restante -= 1;
@@ -202,9 +209,4 @@ $(document).ready(function() {
         }
 
     }
-
-    function capturar_letra() {
-
-    }
-
 });

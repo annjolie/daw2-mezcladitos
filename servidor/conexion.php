@@ -1,7 +1,7 @@
 <?php
 	$servidor="localhost";
-	$usuario="user_mezcladito";
-	$contraseña="Mezcladit02.";
+	$usuario="root";
+	$contraseña="";
 	$baseDatos="mezcladitos";
 
 	// Creamos a conexión

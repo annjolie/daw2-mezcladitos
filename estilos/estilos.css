@@ -119,6 +119,55 @@ nav {
     z-index: 100;
 }
 
+#vistaReglas {
+    position: absolute;
+    color: #EBE501;
+    top: 0;
+    left: auto;
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    z-index: 100;
+    display: grid;
+    grid-template-rows: 10% 1em 25% 1em 15%;
+    grid-template-columns: 1rem 45% auto 45% 1rem;
+    grid-template-areas: "header header header header header" ". . . . ." ". paso1 . paso2 ." ". . . . ." ". paso3 . paso4 ." "h3 h3 h3 h3 h3" ". . button . .";
+}
+
+#vistaReglas .paso1 {
+    grid-area: paso1;
+    font-size: 1.5rem;
+}
+
+#vistaReglas .paso2 {
+    grid-area: paso2;
+    font-size: 1.5rem;
+}
+
+#vistaReglas .paso3 {
+    grid-area: paso3;
+    font-size: 1.5rem;
+}
+
+#vistaReglas .paso4 {
+    grid-area: paso4;
+    font-size: 1.5rem;
+}
+
+#vistaReglas button {
+    grid-area: button;
+}
+
+#vistaReglas>h2 {
+    grid-area: header;
+    font-size: 2rem;
+}
+
+#vistaReglas>h3 {
+    grid-area: h3;
+    font-size: 2rem;
+}
+
 .fondoPausa {
     position: absolute;
     top: 0;
@@ -141,7 +190,8 @@ button {
     cursor: pointer;
 }
 
-#buttonContinuar {
+#buttonContinuar,
+#buttonSalir {
     background-color: white;
     border-color: white;
     font-family: 'Architects Daughter', cursive;
@@ -161,7 +211,7 @@ button:hover {
     margin: 5px;
     padding: 0px 10px;
     border-radius: 50px;
-    color:  #5F03E0;
+    color: #5F03E0;
     cursor: pointer;
 }
 
