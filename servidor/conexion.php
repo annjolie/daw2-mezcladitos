@@ -1,6 +1,6 @@
 <?php
 	$servidor="localhost";
-	$usuario="mezcladito";
+	$usuario="user_mezcladito";
 	$contraseña="Mezcladit02.";
 	$baseDatos="mezcladitos";
 
