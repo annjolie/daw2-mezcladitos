@@ -12,6 +12,7 @@ $(document).ready(function() {
     $("#vistaReglas").hide();
     $(".fondoPausa").hide();
     $("#buttonPausa").hide();
+    $("#vistaFinDeJuego").hide();
 
     iniciarJuego();
 
@@ -19,24 +20,27 @@ $(document).ready(function() {
         activo = false;
         $("#vistaPausa").show();
         $(".fondoPausa").show();
-
+        $("html").addClass('sin-desbordamiento');
     });
 
     $("#buttonContinuar").click(function() {
         activo = true;
         $("#vistaPausa").hide();
         $(".fondoPausa").hide();
+        $("html").removeClass("sin-desbordamiento");
     });
 
     $("#buttonReglas").click(function () {
         $("#vistaReglas").show();
         $(".fondoPausa").show();
+        $("html").addClass('sin-desbordamiento');
     });
 
     $("#buttonSalirRegla").click(function() {
         activo = true;
         $("#vistaReglas").hide();
         $(".fondoPausa").hide();
+        $("html").removeClass("sin-desbordamiento");
     });
 
     $(".flex_item").each(function() {
@@ -60,6 +64,12 @@ $(document).ready(function() {
                 }
             }
         });
+    });
+
+    $("#buttonVolverAJugar").click(function () {
+        $("#vistaFinDeJuego").hide();
+        $(".fondoPausa").hide();
+        $("html").removeClass("sin-desbordamiento");
     });
 
     $(document).mouseup(function() {
@@ -144,6 +154,7 @@ $(document).ready(function() {
         for (var element of palabras_juego) {
             $("#listaPalabras").append("<li class='" + element.tipo + "'>" + element.palabra + "</li>");
         }
+        $('#listaPalabras').scrollTop($('#listaPalabras')[0].scrollHeight);
     }
 
     function iniciarJuego() {
@@ -157,10 +168,12 @@ $(document).ready(function() {
             activo = true;
             tiempo_restante = 180;
             tiempoRestante();
+            if (intervalo) {
+                clearInterval(intervalo);
+            }
             intervalo = setInterval(tiempoRestante, 1000);
             $("#buttonPausa").show();
             letras_aleatorias();
-            $("#buttonInicio").hide();
             $("#buttonReglas").hide();
         });
     }
@@ -177,10 +190,13 @@ $(document).ready(function() {
             $("#tiempo,#tiempoRestante").html("0" + minutos + ":" + segundos);
             if (tiempo_restante == 0) {
                 activo = false;
-                $("#buttonInicio").show();
                 $("#buttonPausa").hide();
                 $("#buttonReglas").show();
                 clearInterval(intervalo);
+                $("#vistaFinDeJuego > span").html("<label>Score final " + score + "</label>");
+                $(".fondoPausa").show();
+                $("#vistaFinDeJuego").show();
+                $("html").addClass("sin-desbordamiento");
             }
             tiempo_restante -= 1;
         }

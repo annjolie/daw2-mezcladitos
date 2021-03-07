@@ -1,4 +1,4 @@
-const todasLasLetras = "abcdefghijklmnñopqrstuvxyz";
+const todasLasLetras = "abcdefghijklmnñopqrstuvwxyz";
 let data = "";
 let contador = 0;
 
