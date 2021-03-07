@@ -11,7 +11,8 @@ body {
     font-family: 'Architects Daughter', cursive;
     background: linear-gradient(to bottom, #5F03E0 40%, black);
     margin: 0;
-    padding: auto;
+    padding: 0;
+    height: 100%;
 }
 
 .tiempo p {
@@ -121,7 +122,7 @@ nav {
 
 #vistaReglas {
     position: absolute;
-    color: #EBE501;
+    color: white;
     top: 0;
     left: auto;
     width: 100vw;
@@ -129,9 +130,17 @@ nav {
     text-align: center;
     z-index: 100;
     display: grid;
-    grid-template-rows: 10% 1em 25% 1em 15%;
-    grid-template-columns: 1rem 45% auto 45% 1rem;
+    grid-template-columns: auto 20% 8rem 20% auto;
     grid-template-areas: "header header header header header" ". . . . ." ". paso1 . paso2 ." ". . . . ." ". paso3 . paso4 ." "h3 h3 h3 h3 h3" ". . button . .";
+}
+#vistaReglas >section > h3 {
+  color: #EBE501;
+  font-size: 2rem;
+  margin: 0 0 1rem 0;
+}
+#vistaReglas > section > p {
+  padding: 0;
+  margin: 0;
 }
 
 #vistaReglas .paso1 {
@@ -175,7 +184,7 @@ nav {
     width: 100vw;
     height: 100vh;
     background-color: black;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 button {

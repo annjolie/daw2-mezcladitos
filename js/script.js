@@ -9,6 +9,7 @@ $(document).ready(function() {
     var score;
 
     $("#vistaPausa").hide();
+    $("#vistaReglas").hide();
     $(".fondoPausa").hide();
     $("#buttonPausa").hide();
 
@@ -25,6 +26,11 @@ $(document).ready(function() {
         activo = true;
         $("#vistaPausa").hide();
         $(".fondoPausa").hide();
+    });
+
+    $("#buttonReglas").click(function () {
+        $("#vistaReglas").show();
+        $(".fondoPausa").show();
     });
 
     $("#buttonSalirRegla").click(function() {
@@ -60,7 +66,9 @@ $(document).ready(function() {
         // Aquí haces la lógica para capturar las letras
         if (activo && palabra_seleccionada.length > 2) {
             //  1.1 Comparar la palabra contra la lista de palabras:
-            if ($("#listaPalabras li:contains('" + palabra_seleccionada + "')").length == 0) {
+            if ($("#listaPalabras li").filter(function() {
+                return $(this).text() === palabra_seleccionada;
+            }).length == 0) {
                 var palabra_aux = palabra_seleccionada;
                 $.ajax({
                     type: "POST",
@@ -143,16 +151,17 @@ $(document).ready(function() {
         //TODO detener el temporizador
         $("#buttonInicio").click(function() {
             score = 0;
+            palabras_juego = [];
             actualizarScore();
-            listaPalabras([]);
+            listaPalabras();
             activo = true;
             tiempo_restante = 180;
             tiempoRestante();
             intervalo = setInterval(tiempoRestante, 1000);
             $("#buttonPausa").show();
             letras_aleatorias();
-            palabras_juego = [];
             $("#buttonInicio").hide();
+            $("#buttonReglas").hide();
         });
     }
 
@@ -170,6 +179,7 @@ $(document).ready(function() {
                 activo = false;
                 $("#buttonInicio").show();
                 $("#buttonPausa").hide();
+                $("#buttonReglas").show();
                 clearInterval(intervalo);
             }
             tiempo_restante -= 1;
