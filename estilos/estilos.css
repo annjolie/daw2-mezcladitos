@@ -11,7 +11,8 @@ body {
     font-family: 'Architects Daughter', cursive;
     background: linear-gradient(to bottom, #5F03E0 40%, black);
     margin: 0;
-    padding: auto;
+    padding: 0;
+    height: 100%;
 }
 
 .tiempo p {
@@ -27,6 +28,11 @@ body {
 aside {
     text-align: center;
     font-size: 1.5em;
+}
+
+#listaPalabras {
+    height: 60vh;
+    overflow-y: auto;
 }
 
 li {
@@ -119,14 +125,106 @@ nav {
     z-index: 100;
 }
 
+#vistaReglas {
+    position: absolute;
+    color: white;
+    top: 0;
+    left: auto;
+    width: 100vw;
+    height: 100%;
+    text-align: center;
+    z-index: 100;
+    display: grid;
+    grid-template-columns: auto 20% 8rem 20% auto;
+    grid-template-areas: "header header header header header" ". . . . ." ". paso1 . paso2 ." ". . . . ." ". paso3 . paso4 ." "h3 h3 h3 h3 h3" ". . button . .";
+}
+
+#vistaReglas>section>h3 {
+    color: #EBE501;
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+}
+
+#vistaReglas>section>p {
+    padding: 0;
+    margin: 0;
+}
+
+#vistaReglas .paso1 {
+    grid-area: paso1;
+    font-size: 1.5rem;
+}
+
+#vistaReglas .paso2 {
+    grid-area: paso2;
+    font-size: 1.5rem;
+}
+
+#vistaReglas .paso3 {
+    grid-area: paso3;
+    font-size: 1.5rem;
+}
+
+#vistaReglas .paso4 {
+    grid-area: paso4;
+    font-size: 1.5rem;
+}
+
+#vistaReglas button {
+    grid-area: button;
+}
+
+#vistaReglas>h2 {
+    grid-area: header;
+    font-size: 2rem;
+}
+
+#vistaReglas>h3 {
+    grid-area: h3;
+    font-size: 2rem;
+}
+
+#vistaFinDeJuego {
+    position: absolute;
+    color: white;
+    top: 0;
+    left: auto;
+    width: 100vw;
+    text-align: center;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 16rem auto;
+}
+
+#vistaFinDeJuego>h2 {
+    color: #EBE501;
+    font-size: 3rem;
+}
+
+#vistaFinDeJuego>span {
+    font-size: 1.5rem;
+}
+
+#vistaFinDeJuego>span>label {
+    color: #EBE501;
+    font-size: 2rem;
+}
+
+#vistaFinDeJuego>p {
+    font-size: 1.5rem;
+}
+
 .fondoPausa {
     position: absolute;
     top: 0;
     left: auto;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
     background-color: black;
-    opacity: 0.8;
+    opacity: 0.9;
+    overflow: hidden;
 }
 
 button {
@@ -141,7 +239,8 @@ button {
     cursor: pointer;
 }
 
-#buttonContinuar {
+#buttonContinuar,
+#buttonSalir {
     background-color: white;
     border-color: white;
     font-family: 'Architects Daughter', cursive;
@@ -161,7 +260,7 @@ button:hover {
     margin: 5px;
     padding: 0px 10px;
     border-radius: 50px;
-    color:  #5F03E0;
+    color: #5F03E0;
     cursor: pointer;
 }
 
@@ -175,4 +274,8 @@ button:hover {
     border-radius: 50px;
     color: black;
     font-weight: bold;
+}
+
+.sin-desbordamiento {
+    overflow: hidden;
 }
