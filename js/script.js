@@ -13,6 +13,7 @@ $(document).ready(function() {
     $(".fondoPausa").hide();
     $("#buttonPausa").hide();
     $("#vistaFinDeJuego").hide();
+    $("#vistaTop10").hide();
 
     iniciarJuego();
 
@@ -175,6 +176,7 @@ $(document).ready(function() {
             $("#buttonPausa").show();
             letras_aleatorias();
             $("#buttonReglas").hide();
+            $("#buttonTop10").hide();
         });
     }
 
@@ -192,11 +194,13 @@ $(document).ready(function() {
                 activo = false;
                 $("#buttonPausa").hide();
                 $("#buttonReglas").show();
+                $("#buttonTop10").show();
                 clearInterval(intervalo);
-                $("#vistaFinDeJuego > span").html("<label>Score final " + score + "</label>");
                 $(".fondoPausa").show();
                 $("#vistaFinDeJuego").show();
+                $("#vistaFinDeJuego span").hide();
                 $("html").addClass("sin-desbordamiento");
+                validar_top_10();
             }
             tiempo_restante -= 1;
         }
@@ -235,4 +239,74 @@ $(document).ready(function() {
         }
 
     }
+
+    function validar_top_10() {
+        $.ajax({
+            type: "POST",
+            url: "servidor/validartopten.php",
+            data: {puntaje: score},
+            dataType: "json"
+        })
+            .done(function (data) {
+                $("#vistaFinDeJuego > label").html("Score final: <span>" + score + "</span>");
+                if (data.esvalido) {
+                    $("#vistaFinDeJuego > span.topten").show();
+                }
+                else {
+                    $("#vistaFinDeJuego > span.findejuego").show();
+                }
+            });
+    }
+
+    $("#guardarJugador").click(function () {
+        if ($("#jugador").val().length > 1) {
+            $.ajax({
+                type: "POST",
+                url: "servidor/agregartopten.php",
+                data: {jugador: $("#jugador").val(), puntaje: score},
+                dataType: "json"
+            })
+                .done(function () {
+                    $("#vistaFinDeJuego").hide();
+                    $(".fondoPausa").hide();
+                    $("html").removeClass("sin-desbordamiento");
+                    mostrar_top_10();
+                });
+        }
+    });
+
+    function mostrar_top_10() {
+        $("#vistaTop10").show();
+        $(".fondoPausa").show();
+        $("html").addClass("sin-desbordamiento");
+        $("#vistaTop10 > div > section").html("");
+        $.ajax({
+            type: "GET",
+            url: "servidor/obtenertopten.php",
+            dataType: "json"
+        })
+            .done(function (data) {
+                if (data.partidas.length > 0) {
+                    var htmlstring = "<table><tr><th>Posición</th><th>Nombre jugador</th><th>Puntaje</th><th>Fecha</th></tr>";
+                    var contador = 1;
+                    $(data.partidas).each(function () {
+                        htmlstring += "<tr><td>" + contador + "</td><td>" + this.nombre_jugador + "</td><td>" + this.puntaje + "</td><td>" + this.fecha_juego + "</td></tr>";
+                        contador++;
+                    });
+                    htmlstring += "</table>";
+                    $("#vistaTop10 > div > section").append(htmlstring);
+                }
+                else {
+                    $("#vistaTop10 > div > section").append("<label>No hay partidas registradas.</label>");
+                }
+            });
+    }
+
+    $("#buttonTop10").click(mostrar_top_10);
+
+    $("#buttonVolverAInicio").click(() => {
+        $("#vistaTop10").hide();
+        $(".fondoPausa").hide();
+        $("html").removeClass("sin-desbordamiento");
+    });
 });

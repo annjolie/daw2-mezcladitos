@@ -65,6 +65,8 @@
                 </div>
                 <button id="buttonInicio">Empezar mezcladito</button>
                 <button id="buttonPausa">Pausar juego</button>
+                <button id="buttonReglas">Mostrar reglas</button>
+                <button id="buttonTop10">Mostrar top 10</button>
             </nav>
         </div>
 
@@ -97,9 +99,26 @@
     </div>
     <div id="vistaFinDeJuego">
         <h2>Fin del juego</h2>
-        <span></span>
-        <p>Pulsa el botón para volver a iniciar una partida</p>
-        <button id="buttonVolverAJugar">Volver a jugar</button>
+        <label></label>
+        <span class="topten">
+            <div class='jugador'>
+                <label for='jugador'>Nombre jugador</label>
+                <input type='text' id='jugador' />
+            </div>
+            <button class='btn' id='guardarJugador'>Guardar</button>
+        </span>
+        <span class="findejuego">
+            <p>Pulsa el botón para volver a iniciar una partida</p>
+            <button id="buttonVolverAJugar">Volver a jugar</button>
+        </span>
+    </div>
+    <div id="vistaTop10">
+        <div>
+            <h2>Top 10 partidas</h2>
+            <section></section>
+            <p>Pulsa el botón para volver a la pantalla de inicio.</p>
+            <button id="buttonVolverAInicio">Volver</button>
+        </div>
     </div>
     <div class="fondoPausa"></div>
 </body>

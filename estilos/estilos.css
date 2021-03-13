@@ -25,6 +25,12 @@ body {
     grid-template-columns: 20% auto 20%;
 }
 
+.contenedorPrincipal > nav {
+    display: flex;
+    flex-direction: column;
+    max-width: 325px;
+}
+
 aside {
     text-align: center;
     font-size: 1.5em;
@@ -135,8 +141,9 @@ nav {
     text-align: center;
     z-index: 100;
     display: grid;
-    grid-template-columns: auto 20% 8rem 20% auto;
+    grid-template-columns: 1fr 1fr 10% 1fr 1fr;
     grid-template-areas: "header header header header header" ". . . . ." ". paso1 . paso2 ." ". . . . ." ". paso3 . paso4 ." "h3 h3 h3 h3 h3" ". . button . .";
+    overflow: auto;
 }
 
 #vistaReglas>section>h3 {
@@ -240,7 +247,8 @@ button {
 }
 
 #buttonContinuar,
-#buttonSalir {
+#buttonSalir,
+#buttonVolverAInicio {
     background-color: white;
     border-color: white;
     font-family: 'Architects Daughter', cursive;
@@ -278,4 +286,63 @@ button:hover {
 
 .sin-desbordamiento {
     overflow: hidden;
+}
+
+.jugador input {
+    font-size: 1.5rem;
+    margin-left: 0.5rem;
+}
+
+#vistaFinDeJuego > label {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+#vistaFinDeJuego > label > span {
+    color: #EBE501;
+}
+
+#vistaTop10 {
+    position: absolute;
+    color: white;
+    top: 0;
+    left: auto;
+    width: 100vw;
+    height: 100%;
+    text-align: center;
+    z-index: 100;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    font-size: 2rem;
+}
+
+#vistaTop10>div> {
+    max-width: 640px;
+    margin: 5rem auto;
+}
+
+#vistaTop10>div>h2 {
+    color: #EBE501;
+}
+
+#vistaTop10 table {
+    font-size: 2rem;
+    background-color: white;
+    margin: 0 auto;
+    max-width: 920px;
+    width: 100%;
+    text-align: center;
+}
+
+#vistaTop10 table th {
+    color: #EBE501;
+}
+
+#vistaTop10 table tr:first-child {
+    background-color: #333 !important;
+}
+
+#vistaTop10 table tr:nth-child(even) {
+    background-color: #f2f2f2;
 }
