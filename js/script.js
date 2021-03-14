@@ -7,6 +7,7 @@ $(document).ready(function() {
     var palabras_juego = [];
     var intervalo;
     var score;
+    var textos;
 
     $("#vistaPausa").hide();
     $("#vistaReglas").hide();
@@ -147,7 +148,7 @@ $(document).ready(function() {
     }
 
     function actualizarScore() {
-        $("#score").html("score: " + score);
+        $("#score").html(textos.puntaje + ": " + (score || ""));
     }
 
     function listaPalabras() {
@@ -248,7 +249,7 @@ $(document).ready(function() {
             dataType: "json"
         })
             .done(function (data) {
-                $("#vistaFinDeJuego > label").html("Score final: <span>" + score + "</span>");
+                $("#vistaFinDeJuego > label").html(textos.score_final + ": <span>" + score + "</span>");
                 if (data.esvalido) {
                     $("#vistaFinDeJuego > span.topten").show();
                 }
@@ -287,7 +288,7 @@ $(document).ready(function() {
         })
             .done(function (data) {
                 if (data.partidas.length > 0) {
-                    var htmlstring = "<table><tr><th>Posición</th><th>Nombre jugador</th><th>Puntaje</th><th>Fecha</th></tr>";
+                    var htmlstring = "<table><tr><th>" + textos.posicion + "</th><th>" + textos.nombre_jugador + "</th><th>" + textos.puntaje + "</th><th>" + textos.fecha + "</th></tr>";
                     var contador = 1;
                     $(data.partidas).each(function () {
                         htmlstring += "<tr><td>" + contador + "</td><td>" + this.nombre_jugador + "</td><td>" + this.puntaje + "</td><td>" + this.fecha_juego + "</td></tr>";
@@ -297,7 +298,7 @@ $(document).ready(function() {
                     $("#vistaTop10 > div > section").append(htmlstring);
                 }
                 else {
-                    $("#vistaTop10 > div > section").append("<label>No hay partidas registradas.</label>");
+                    $("#vistaTop10 > div > section").append("<label>" + textos.no_hay_partidas + "</label>");
                 }
             });
     }
@@ -309,4 +310,52 @@ $(document).ready(function() {
         $(".fondoPausa").hide();
         $("html").removeClass("sin-desbordamiento");
     });
+
+    $("#seleccionarIdioma").change(obtenerIdioma);
+
+    function obtenerIdioma() {
+        var idiomaSeleccionado = $("#seleccionarIdioma").val();
+        $.ajax({
+            type: "POST",
+            url: "servidor/obteneridioma.php",
+            data: {idioma: idiomaSeleccionado},
+            dataType: "json"
+        })
+            .done(function (data) {
+                if (data.datos) {
+                    textos = data.datos;
+                    $("#textoTiempo").html(textos.tiempo);
+                    $("#score").html(textos.puntaje)
+                    $("#buttonInicio").html(textos.boton_empezar);
+                    $("#buttonPausa").html(textos.boton_pausar);
+                    $("#buttonReglas").html(textos.boton_reglas);
+                    $("#buttonTop10").html(textos.boton_top10);
+                    $("#vistaPausa > h2").html(textos.pausado);
+                    $("#vistaPausa > span").html(textos.tiempo_restante + "<label id='tiempoRestante'>-:--</label>");
+                    $("#buttonContinuar").html(textos.boton_continuar);
+                    $("#vistaReglas > h2").html(textos.titulo_reglas);
+                    $("#vistaReglas .paso1 > h3").html(textos.titulo_paso1);
+                    $("#vistaReglas .paso1 > p").html(textos.paso1);
+                    $("#vistaReglas .paso2 > h3").html(textos.titulo_paso2);
+                    $("#vistaReglas .paso2 > p").html(textos.paso2);
+                    $("#vistaReglas .paso3 > h3").html(textos.titulo_paso3);
+                    $("#vistaReglas .paso3 > p").html(textos.paso3);
+                    $("#vistaReglas .paso4 > h3").html(textos.titulo_paso4);
+                    $("#vistaReglas .paso4 > p").html(textos.paso4);
+                    $("#vistaReglas > h3").html(textos.recordatorio);
+                    $("#buttonSalirRegla").html(textos.boton_salir);
+                    $("#vistaFinDeJuego > h2").html(textos.fin_juego);
+                    $("#vistaFinDeJuego label[for='jugador']").html(textos.nombre_jugador);
+                    $("#guardarJugador").html(textos.guardar_jugador);
+                    $("#vistaFinDeJuego .findejuego > p").html(textos.indicacion_inicio);
+                    $("#buttonVolverAJugar").html(textos.boton_volver_jugar);
+                    $("#vistaTop10 > div > h2").html(textos.titulo_top_10);
+                    $("#vistaTop10 > div > p").html(textos.volver_inicio);
+                    $("#buttonVolverAInicio").html(textos.volver);
+                    actualizarScore();
+                }
+            });
+    }
+
+    obtenerIdioma();
 });

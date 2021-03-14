@@ -60,64 +60,69 @@
             </section>
             <nav>
                 <div class="tiempo">
-                    <p>Tiempo</p>
+                    <p id="textoTiempo"></p>
                     <span id="tiempo">-:--</span>
                 </div>
-                <button id="buttonInicio">Empezar mezcladito</button>
-                <button id="buttonPausa">Pausar juego</button>
-                <button id="buttonReglas">Mostrar reglas</button>
-                <button id="buttonTop10">Mostrar top 10</button>
+                <button id="buttonInicio"></button>
+                <button id="buttonPausa"></button>
+                <button id="buttonReglas"></button>
+                <button id="buttonTop10"></button>
+                <select id="seleccionarIdioma">
+                    <option value="ES" selected>Español</option>
+                    <option value="GA">Galego</option>
+                    <option value="EN">English</option>
+                </select>
             </nav>
         </div>
 
     </main>
     <div id="vistaPausa">
-        <h2>Juego pausado</h2>
-        <span>Tiempo restante <label id="tiempoRestante">-:--</label></span>
-        <button id="buttonContinuar">Continuar</button>
+        <h2></h2>
+        <span><label id="tiempoRestante">-:--</label></span>
+        <button id="buttonContinuar"></button>
     </div>
     <div id="vistaReglas">
-        <h2>¿Cómo jugar?</h2>
+        <h2></h2>
         <section class="paso1">
-            <h3>Paso 1.</h3>
-            <p>Para iniciar una partida, haz clic en el botón Nuevo que encontrarás en la parte superior de la pantalla.</p>
+            <h3></h3>
+            <p></p>
         </section>
         <section class="paso2">
-            <h3>Paso 2.</h3>
-            <p>Para formar palabras, tendrás que deslizar el cursor sobre el tablero y unir letras de forma vertical, horizontal, diagonal, del derecho o del revés. En cada una de las palabras, no podrás pasar más de una vez por el mismo lugar.</p>
+            <h3></h3>
+            <p></p>
         </section>
         <section class="paso3">
-            <h3>Paso 3.</h3>
-            <p>Observa las palabras que has formado a la izquierda del tablero. La palabra en verde significa que es correcta, en blanca es que está repetida y roja que no existe</p>
+            <h3></h3>
+            <p></p>
         </section>
         <section class="paso4">
-            <h3>Paso 4.</h3>
-            <p>Suma de puntos.</p>
+            <h3></h3>
+            <p></p>
         </section>
-        <h3>Y recuerda, ¡tienes que ser muy rápido!.</h3>
-        <button id="buttonSalirRegla">Salir</button>
+        <h3></h3>
+        <button id="buttonSalirRegla"></button>
     </div>
     <div id="vistaFinDeJuego">
-        <h2>Fin del juego</h2>
+        <h2></h2>
         <label></label>
         <span class="topten">
             <div class='jugador'>
-                <label for='jugador'>Nombre jugador</label>
+                <label for='jugador'></label>
                 <input type='text' id='jugador' />
             </div>
-            <button class='btn' id='guardarJugador'>Guardar</button>
+            <button class='btn' id='guardarJugador'></button>
         </span>
         <span class="findejuego">
-            <p>Pulsa el botón para volver a iniciar una partida</p>
-            <button id="buttonVolverAJugar">Volver a jugar</button>
+            <p></p>
+            <button id="buttonVolverAJugar"></button>
         </span>
     </div>
     <div id="vistaTop10">
         <div>
-            <h2>Top 10 partidas</h2>
+            <h2></h2>
             <section></section>
-            <p>Pulsa el botón para volver a la pantalla de inicio.</p>
-            <button id="buttonVolverAInicio">Volver</button>
+            <p></p>
+            <button id="buttonVolverAInicio"></button>
         </div>
     </div>
     <div class="fondoPausa"></div>
